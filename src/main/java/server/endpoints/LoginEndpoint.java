@@ -3,6 +3,7 @@ package server.endpoints;
 import com.google.gson.Gson;
 import server.controllers.TokenController;
 import server.models.Student;
+import server.models.Token;
 import server.providers.StudentTable;
 import server.resources.Log;
 import server.utility.Authenticator;
@@ -62,16 +63,19 @@ public class LoginEndpoint {
 
             if (doHash.equals(foundStudent.getPassword())) {
                 //sets the token for the student
-                tokenController.setToken(foundStudent);
+                String _token = tokenController.setToken(foundStudent);
+                Token newToken = new Token();
+                newToken.setToken(_token);
+                foundStudent.setToken(newToken);
 
-                String json = new Gson().toJson(foundStudent);
+                String json = new Gson().toJson(_token);
                 String crypted = Crypter.encryptDecrypt(json);
 
                 Log.writeLog(getClass().getName(), this, "Logged in", 0);
                 return Response
                         .status(200)
                         .type("application/json")
-                        .entity(new Gson().toJson(crypted))
+                        .entity(new Gson().toJson(_token))
                         .build();
             } else {
                 Log.writeLog(getClass().getName(), this, "Password incorect", 2);

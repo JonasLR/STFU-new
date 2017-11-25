@@ -4,30 +4,14 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import server.providers.StudentTable;
 import server.models.Student;
-import server.models.Token;
-import server.providers.DBmanager;
-import server.utility.Crypter;
 import server.utility.CurrentStudentContext;
-;import java.io.UnsupportedEncodingException;
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.Date;
 
 public class TokenController {
 
     private StudentTable studentTable = new StudentTable();
-
-
-/*
-    // Metode til at modtage en token og sende et student objekt retur
-
-    public Student getStudentFromTokens(String token) throws SQLException {
-        Student student = st.getStudentFromToken(token);
-        st.close();
-        return student;
-    }
-*/
-
-    // Metode til at slette en token (eventuelt ved log ud)
 
     /**
      *

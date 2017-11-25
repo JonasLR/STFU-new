@@ -15,7 +15,8 @@ public class Token {
         setToken(Authenticator.hashWithSalt(student.getEmail(), student.getSalt()));
 
     }
-
+    public Token(){
+    }
     public void setStudent (Student student) {
         this.student = student;
     }
